@@ -2,7 +2,12 @@
 export default {
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        yeseva: ['"Yeseva One"', 'sans-serif'],
+        baiJamjuree: ['"Bai Jamjuree"', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
