@@ -1,6 +1,22 @@
 <template>
-  <div class="flex fixed w-full top-0 left-0 h-full">
-    <NuxtLayout/>
-    <NuxtPage class="w-full overflow-y-scroll"/>
+  <div>
+    <NuxtLayout>
+      <transition name="fade">
+        <NuxtPage />
+      </transition>
+    </NuxtLayout>
   </div>
 </template>
+
+<script setup lang="ts">
+
+</script>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.2s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+</style>

@@ -8,13 +8,19 @@ export default defineNuxtConfig({
     '@ant-design-vue/nuxt',
     '@nuxt/image',
     '@nuxt/icon',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    'dayjs-nuxt'
   ],
   googleFonts: {
     display: 'swap',
     families: {
-      'Yeseva One': [ 300, 400, 500, 600, 700] ,
-      'Bai Jamjuree': [ 300, 400, 500, 600, 700] ,
+      'Playfair Display': [300, 400, 500, 600, 700],
+      'Bai Jamjuree': [300, 400, 500, 600, 700],
+    }
+  },
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.BASE_URL
     }
   }
 })
