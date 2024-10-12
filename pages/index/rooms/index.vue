@@ -1,5 +1,7 @@
 <template>
-  <NuxtPage/>
+    <div>
+        roomss
+    </div>
 </template>
 
 <script setup lang="ts">

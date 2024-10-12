@@ -4,8 +4,16 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        yeseva: ['"Yeseva One"', 'sans-serif'],
+        playFair: ['"Playfair Display"', 'serif'],
         baiJamjuree: ['"Bai Jamjuree"', 'sans-serif'],
+      },
+      textColor: {
+        primary: '#CBAA5C',
+        // secondary: '#4A4A4A',
+      },
+      backgroundColor: {
+        // primary: '#CBAA5C',
+        secondary: '#A07343',
       },
     },
   },
