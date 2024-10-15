@@ -1,32 +1,54 @@
 <template>
-    <div class="">
-        <header class="bg-secondary w-full text-white ">
-            <div class="container mx-auto flex py-2 items-center justify-between">
-                <span>Hotel name : THE REED HOTEL NINH BINH</span>
-                <div class="flex items-center gap-3 cursor-pointer" @click="openLoginModal" v-if="!user">
-                    <Icon class="text-xl text-white" name="i-material-symbols-home" />
-                    <span class="uppercase">Login</span>
-                </div>
-                <div v-else class="flex items-center gap-4">
-                    <a-avatar style="color: #f56a00; background-color: #fde3cf">{{ firstChar }}</a-avatar>
-                    <span class="cursor-pointer">{{ user?.name }}</span>
-                    <button @click="logout" class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
-                </div>
-            </div>
-        </header>
-        <div>
-            <slot></slot>
+  <div class="">
+    <header class="bg-secondary w-full text-white">
+      <div class="container mx-auto flex py-2 items-center justify-between">
+        <span>Hotel name : THE REED HOTEL NINH BINH</span>
+        <div class="flex items-center gap-3 cursor-pointer" @click="openLoginModal" v-if="!user">
+          <Icon class="text-xl text-white" name="i-material-symbols-home" />
+          <span class="uppercase">Login</span>
         </div>
-        <LoginModal :open="isLoginModalOpen" @handle-cancel="closeLoginModal" />
+        <div v-else class="flex items-center gap-4">
+          <a-dropdown>
+            <template #overlay>
+              <a-menu>
+                <a-menu-item key="settings" @click="openModalSetting">
+                  <Icon class="mr-2" name="i-material-symbols-settings" />
+                  Cài đặt
+                </a-menu-item>
+                <a-menu-item key="logout" @click="logout">
+                  <Icon class="mr-2" name="i-material-symbols-logout" />
+                  Đăng xuất
+                </a-menu-item>
+              </a-menu>
+            </template>
+            <div class="flex items-center gap-2 cursor-pointer">
+              <a-avatar style="color: #f56a00; background-color: #fde3cf">{{ firstChar }}</a-avatar>
+              <span>{{ user?.name }}</span>
+            </div>
+          </a-dropdown>
+        </div>
+      </div>
+    </header>
+    <div>
+      <slot></slot>
     </div>
+    <LoginModal :open="isLoginModalOpen" @handle-cancel="closeLoginModal" />
+    <RegisterModal :open="isRegisterModalOpen" @handle-cancel="closeRegisterModal" />
+    <UsersSetting v-if="isOpenModalSetting" :open="isOpenModalSetting" @handle-cancel="closeModalSetting" />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useAuthModalState } from '~/composable/authModalState';
+import { useUserSettingState } from '~/composable/userSettingState';
 import type { IUser } from '~/interfaces/User';
+import { useAuthStore } from '~/stores/auth';
 
 const authModalState = useAuthModalState();
-const { isLoginModalOpen, openLoginModal, closeLoginModal } = authModalState;
+const { isLoginModalOpen, openLoginModal, closeLoginModal, isRegisterModalOpen, openRegisterModal, closeRegisterModal } = authModalState;
+
+const userSettingState = useUserSettingState();
+const { isOpenModalSetting, openModalSetting, closeModalSetting } = userSettingState;
 
 const authStore = useAuthStore();
 const { setToken, setUser, token } = authStore;
