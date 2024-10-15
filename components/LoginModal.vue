@@ -79,11 +79,16 @@
 </template>
 
 <script lang="ts" setup>
+import { useAuthModalState } from '~/composable/authModalState';
 import type { IUser } from '~/interfaces/User';
 import { useAuthStore } from '~/stores/auth';
 
 const authStore = useAuthStore();
 const {user:userStore, setToken, setUser } = authStore
+
+const authModalState = useAuthModalState()
+const {  openRegisterModal, closeLoginModal } = authModalState
+
 const props = defineProps<{
   open: boolean;
 }>();
@@ -143,8 +148,8 @@ const handleSubmit = () => {
 };
 
 const openRegisterForm = () => {
-  console.log('Open register form');
-  // Logic to open the registration form
+  closeLoginModal();
+  openRegisterModal();
 };
 
 const loginWithGoogle = () => {
