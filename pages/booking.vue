@@ -420,6 +420,8 @@ onMounted(async () => {
         } else {
           message.error('Thanh toán thất bại. Vui lòng thử lại.');
         }
+        const url = `/booking`;
+        router.push(url);
       }
     })
   }

@@ -1,6 +1,6 @@
 <template>
   <a-modal
-    v-model:visible="props.open"
+    v-model:open="props.open"
     :width="500"
     style="top: 50px"
     @ok="handleOk"
