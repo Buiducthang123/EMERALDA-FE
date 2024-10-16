@@ -1,5 +1,5 @@
 <template>
-    <a-modal v-model:visible="isOpenModalSetting" width="70%" style="top: 30px" @ok="handleOk"
+    <a-modal v-model:open="isOpenModalSetting" width="70%" style="top: 30px" @ok="handleOk"
         @cancel="closeModalSetting" :footer="null">
         <template #title>
             <h2 class="mb-6 text-xl font-medium text-center">Cài đặt chung</h2>
@@ -18,8 +18,13 @@
                         </div>
                     </a-tab-pane>
                     <a-tab-pane key="3" tab="Lịch sử thanh toán">
-                        <div class="tab-content overflow-x-scroll">
+                        <div class="tab-content">
                            <LazyUsersSettingsPayment/>
+                        </div>
+                    </a-tab-pane>
+                    <a-tab-pane key="4" tab="Yêu cầu hủy phòng">
+                        <div class="tab-content">
+                           <LazyUsersSettingsCancelRequest/>
                         </div>
                     </a-tab-pane>
                 </a-tabs>

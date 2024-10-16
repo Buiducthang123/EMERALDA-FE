@@ -76,19 +76,19 @@ const columns = [
     title: 'Tổng giá',
     dataIndex: 'total_price',
     key: 'total_price',
-    customRender: ({ text }) => `${text.toLocaleString()} VND`,
+    customRender: ({ text }: { text: number }) => `${text.toLocaleString()} VND`,
   },
   {
     title: 'Số tiền đã thanh toán',
     dataIndex: 'prepayment_amount',
     key: 'prepayment_amount',
-    customRender: ({ text }) => `${text.toLocaleString()} VND`,
+    customRender: ({ text }: { text: number }) => `${text.toLocaleString()} VND`,
   },
   {
     title: 'Ngày tạo',
     dataIndex: 'created_at',
     key: 'created_at',
-    customRender: ({ text }) => new Date(text).toLocaleDateString(),
+    customRender: ({ text }: { text: string }) => new Date(text).toLocaleDateString(),
   },
 ];
 
