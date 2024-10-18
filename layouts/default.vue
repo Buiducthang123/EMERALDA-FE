@@ -1,6 +1,6 @@
 <template>
-  <div class="grid grid-cols-12">
-    <nav class="bg-[#FCF8F2] col-span-3 top-0 py-6 shadow-lg h-screen z-50">
+  <div class="grid grid-cols-10">
+    <nav class="bg-[#FCF8F2] col-span-2 top-0 py-6 shadow-lg h-screen z-50">
       <div class="flex flex-col justify-between h-full">
         <!-- Logo Section -->
         <div>
@@ -50,7 +50,7 @@
         </ButtonCustom>
       </div>
     </nav>
-   <div class="col-span-9 h-screen overflow-y-scroll">
+   <div class="col-span-8 h-screen overflow-y-scroll">
     <slot  />
    </div>
   </div>

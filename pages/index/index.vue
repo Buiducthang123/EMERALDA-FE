@@ -9,14 +9,14 @@
         <div class="flex gap-4">
           <div>
             <div class=" space-y-2">
-              <p class="tracking-widest leading-relaxed text-sm">CHÀO MỪNG QUÝ KHÁCH ĐẾN VỚI THE REED HOTEL</p>
-              <h1 class="text-5xl font-playFair font-bold">Ngôi nhà của bạn tại Ninh Bình</h1>
+              <p class="tracking-widest leading-relaxed text-sm uppercase">CHÀO MỪNG QUÝ KHÁCH ĐẾN VỚI  Emeralda HOTEL</p>
+              <h1 class="text-5xl font-playFair font-bold">Ngôi nhà của bạn tại Tam Cốc</h1>
             </div>
             <div class="w-16 bg-[#C4A356] h-[0.2px] my-8"></div>
             <p class="pb-5 text-base leading-9">
-              Được đặt tại ngay trung tâm của thành phố Ninh Bình, khách sạn The Reed là địa điểm lý tưởng để quý khách
+              Được đặt tại ngay trung tâm của thành phố Tam cốc, khách sạn  Emeralda Hotel  là địa điểm lý tưởng để quý khách
               tận hưởng những kỳ nghỉ, trải nghiệm các nét địa phương và khám phá Cố Đô xưa của Việt Nam. Không chỉ được
-              đầu tư hệ thống phòng nghỉ tiện nghi, khách sạn The Reed còn là điểm đến tuyệt vời những cho những sự kiện
+              đầu tư hệ thống phòng nghỉ tiện nghi, khách sạn  Emeralda Hotel  còn là điểm đến tuyệt vời những cho những sự kiện
               lớn
             </p>
           </div>
@@ -47,7 +47,7 @@
 
       <section>
         <h2 class="font-playFair text-4xl font-bold text-center mt-10">Tận hưởng những căn phòng tiện nghi</h2>
-        <p class="tracking-[0.3em] text-center my-8">TẠI THE REED HOTEL</p>
+        <p class="tracking-[0.3em] text-center my-8 uppercase">TẠI Emeralda Hotel </p>
 
         <div class="flex gap-6 h-auto">
           <CardRoomType class="w-1/3" v-for="(item, index) in roomTypes" :key="index" :roomType="item" />
@@ -85,8 +85,8 @@ const { data: roomTypes } = useFetch<IRoomType[]>('api/room-types', {
 
 
 useSeoMeta({
-  title: 'Home - The Reed Hotel',
-  description: 'The Reed Hotel - Ninh Bình',
+  title: 'Home -  Emeralda Hotel ',
+  description: 'Emeralda Hotel  - Tam cốc',
 })
 
 </script>

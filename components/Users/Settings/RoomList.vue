@@ -1,65 +1,33 @@
 <template>
   <div class="container mx-auto">
-    <div class="mb-8" v-if="roomNotCheckIn && roomNotCheckIn.length > 0">
-        <div class="flex justify-between">
-            <h6 class="text-xl font-medium mb-4">Danh sách phòng chưa nhận</h6>
-            <a-button danger class="mb-4" @click="cancelSelectedBookings">Hủy phòng</a-button>
-        </div>
+    <!-- Filter Section -->
+    <div class="mb-8">
+      <div class="flex justify-between">
+        <h6 class="text-xl font-medium mb-4">Danh sách phòng</h6>
+        <a-button danger class="mb-4" @click="cancelSelectedBookings">Hủy phòng</a-button>
+      </div>
+      <label for="statusFilter" class="block mb-2">Lọc theo trạng thái:</label>
+      <select id="statusFilter" v-model="selectedStatus" @change="filterRooms" class="p-2 border rounded">
+        <option value="">Tất cả</option>
+        <option :value="EBookingStatus.PENDING_APPROVAL">Chờ xác nhận thanh toán</option>
+        <option :value="EBookingStatus.WAITING_CHECK_IN">Chờ nhận phòng / Đã đặt cọc</option>
+        <option :value="EBookingStatus.CHECKED_IN">Đã nhận phòng</option>
+        <option :value="EBookingStatus.CHECKED_OUT">Đã trả phòng</option>
+        <option :value="EBookingStatus.CANCELLED">Đã hủy</option>
+      </select>
+    </div>
+
+    <!-- Room Table -->
+    <div class="mb-8">
       <a-table
         :columns="columns"
-        :dataSource="roomNotCheckIn"
+        :dataSource="paginatedRooms"
         rowKey="id"
         :pagination="false"
         bordered
         :rowSelection="rowSelection"
+        
       >
-        <template #expandedRowRender="{ record }">
-          <div class="p-4 bg-gray-50">
-            <h4 class="text-md font-semibold">Thông tin khách hàng</h4>
-            <p><strong>Tên khách hàng:</strong> {{ record.order.customer_info.name }}</p>
-            <p><strong>Số điện thoại:</strong> {{ record.order.customer_info.phone_number }}</p>
-            <p><strong>Email liên hệ:</strong> {{ record.order.customer_info.email }}</p>
-            <p><strong>Địa chỉ:</strong> {{ record.order.customer_info.address }}</p>
-          </div>
-        </template>
-      </a-table>
-    </div>
-
-    <div class="mb-8" v-if="roomCheckedIn && roomCheckedIn.length > 0">
-      <div>
-        <h6 class="text-xl font-medium mb-4">Danh sách phòng đã nhận</h6>
-      </div>
-      <a-table :columns="columns" :dataSource="roomCheckedIn" rowKey="id" bordered>
-        <template #expandedRowRender="{ record }">
-          <div class="p-4 bg-gray-50">
-            <h4 class="text-md font-semibold">Thông tin khách hàng</h4>
-            <p><strong>Tên khách hàng:</strong> {{ record.order.customer_info.name }}</p>
-            <p><strong>Số điện thoại:</strong> {{ record.order.customer_info.phone_number }}</p>
-            <p><strong>Email liên hệ:</strong> {{ record.order.customer_info.email }}</p>
-            <p><strong>Địa chỉ:</strong> {{ record.order.customer_info.address }}</p>
-          </div>
-        </template>
-      </a-table>
-    </div>
-
-    <div class="mb-8" v-if="roomCheckedOut && roomCheckedOut.length > 0">
-      <h6 class="text-xl font-medium mb-4">Danh sách phòng đã trả</h6>
-      <a-table :columns="columns" :dataSource="roomCheckedOut" rowKey="id" bordered>
-        <template #expandedRowRender="{ record }">
-          <div class="p-4 bg-gray-50">
-            <h4 class="text-md font-semibold">Thông tin khách hàng</h4>
-            <p><strong>Tên khách hàng:</strong> {{ record.order.customer_info.name }}</p>
-            <p><strong>Số điện thoại:</strong> {{ record.order.customer_info.phone_number }}</p>
-            <p><strong>Email liên hệ:</strong> {{ record.order.customer_info.email }}</p>
-            <p><strong>Địa chỉ:</strong> {{ record.order.customer_info.address }}</p>
-          </div>
-        </template>
-      </a-table>
-    </div>
-
-    <div class="mb-8" v-if="roomCanceled && roomCanceled.length > 0">
-      <h6 class="text-xl font-medium mb-4">Danh sách phòng đã hủy</h6>
-      <a-table :columns="columns" :dataSource="roomCanceled" rowKey="id" bordered>
         <template #expandedRowRender="{ record }">
           <div class="p-4 bg-gray-50">
             <h4 class="text-md font-semibold">Thông tin khách hàng</h4>
@@ -75,6 +43,7 @@
     <CancelBookingModal v-if="isCancelBooking" :bookings="selectedRows" :open="isCancelBooking" @close-modal="isCancelBooking=false" />
   </div>
 </template>
+
 <script setup lang="ts">
 import { ref, h, computed } from 'vue';
 import { useAuthStore } from '@/stores/auth';
@@ -102,7 +71,6 @@ interface DataType {
   user_id: number;
 }
 
-
 const isCancelBooking = ref(false);
 
 const authStore = useAuthStore();
@@ -126,20 +94,12 @@ const formatCurrency = (value: number) => {
   return value.toLocaleString('vi-VN') + ' VND';
 };
 
-const roomNotCheckIn = computed(() => {
-  return bookings.value?.filter(booking => booking.status == EBookingStatus.NOT_CHECKED_IN);
-});
-
-const roomCheckedIn = computed(() => {
-  return bookings.value?.filter(booking => booking.status == EBookingStatus.CHECKED_IN);
-});
-
-const roomCheckedOut = computed(() => {
-  return bookings.value?.filter(booking => booking.status == EBookingStatus.CHECKED_OUT);
-});
-
-const roomCanceled = computed(() => {
-  return bookings.value?.filter(booking => booking.status == EBookingStatus.CANCELLED);
+const selectedStatus = ref<string>('');
+const filteredRooms = computed(() => {
+  if (!selectedStatus.value) {
+    return bookings.value || [];
+  }
+  return bookings.value?.filter(booking => booking.status === Number(selectedStatus.value)) || [];
 });
 
 const selectedRowKeys = ref<number[]>([]);
@@ -218,6 +178,30 @@ const columns: TableColumnType<DataType>[] = [
     customRender: ({ text }: { text: number }) => formatCurrency(text),
   },
 ];
+
+// Pagination logic
+const currentPage = ref(1);
+const pageSize = ref(10);
+
+const pagination = computed(() => ({
+  current: currentPage.value,
+  pageSize: pageSize.value,
+  total: filteredRooms.value.length,
+  onChange: (page: number, pageSize: number) => {
+    currentPage.value = page;
+    pageSize.value = pageSize;
+  }
+}));
+
+const paginatedRooms = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value;
+  const end = start + pageSize.value;
+  return filteredRooms.value.slice(start, end);
+});
+
+const filterRooms = () => {
+  currentPage.value = 1; // Reset to first page when filter changes
+};
 </script>
 
 <style scoped></style>

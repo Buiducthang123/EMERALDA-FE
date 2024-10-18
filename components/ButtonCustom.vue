@@ -3,6 +3,7 @@
         type="ghost" 
         class="bg-[#C4A456] h-10 text-white rounded-none py-0 pl-4 pr-0 flex items-center gap-5" 
         :class="{ 'pr-4': hiddenIcon }"
+        @click="useRouter().push(props.redirectTo ?? '/booking')"
     >
         <div class="font-medium">
             <slot name="title"></slot>
@@ -19,6 +20,7 @@
 <script setup lang="ts">
 const props = defineProps<{
     hiddenIcon?: boolean|null
+    redirectTo?:string
 }>()
 </script>
 
