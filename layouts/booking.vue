@@ -2,7 +2,7 @@
   <div class="">
     <header class="bg-secondary w-full text-white">
       <div class="container mx-auto flex py-2 items-center justify-between">
-        <span>Hotel name :  Emeralda Hotel Tam Coc</span>
+        <span>Resort  name :  Emeralda Resort Tam Coc</span>
         <div class="flex items-center gap-3 cursor-pointer" @click="openLoginModal" v-if="!user">
           <Icon class="text-xl text-white" name="i-material-symbols-home" />
           <span class="uppercase">Login</span>

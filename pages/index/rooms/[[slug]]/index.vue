@@ -34,7 +34,7 @@
             </section>
             <section class="bg-[#F4F6F8] text-center px-10 pb-12">
                 <NuxtImg src="amenities_bg.png" alt="" class="mx-auto" />
-                <p class="uppercase tracking-widest text-xl mt-8 ">Emeralda Hotel </p>
+                <p class="uppercase tracking-widest text-xl mt-8 ">Emeralda Resort </p>
                 <h3 class="font-playFair text-4xl font-bold mt-5 pb-16">Trang bị phòng Deluxe</h3>
 
                 <ul class="grid grid-cols-12 text-left gap-4">
