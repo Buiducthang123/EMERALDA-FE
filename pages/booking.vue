@@ -195,7 +195,7 @@ const query = reactive({
   }
 })
 
-const { data: roomTypes } = useFetch<IRoomType[]>('/api/room-types', {
+const { data: roomTypes, refresh:refreshRoomTypes } = useFetch<IRoomType[]>('/api/room-types', {
   method: 'GET',
   baseURL: useRuntimeConfig().public.baseURL,
   query: {
@@ -416,6 +416,7 @@ onMounted(async () => {
       Authorization: `Bearer ${token.value}`,
       onResponse: ({ response }) => {
         if (response.ok) {
+          refreshRoomTypes();
           message.success('Thanh toán thành công');
         } else {
           message.error('Thanh toán thất bại. Vui lòng thử lại.');
@@ -434,7 +435,11 @@ const userSettingState = useUserSettingState();
 const { openModalSetting } = userSettingState;
 
 const handleViewBooking = () => {
-  openModalSetting();
+ if (!user.value) {
+   message.error('Vui lòng đăng nhập để xem danh sách phòng đã đặt');
+   return;
+ }
+ openModalSetting();
   // Add parameters to the URL
   const params = new URLSearchParams();
   params.append('active', '2');

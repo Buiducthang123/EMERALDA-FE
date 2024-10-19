@@ -97,7 +97,7 @@ const menuItems = ref<IMenuItem[]>([
     label: 'PHÒNG NGHỈ',
     options: roomTypeName.value,
     showOptions: false,
-    path: '/rooms'
+    // path: '/rooms'
   },
   {
     label: 'ẨM THỰC',

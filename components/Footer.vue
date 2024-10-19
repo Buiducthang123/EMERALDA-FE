@@ -35,7 +35,7 @@
         </div>
 
         <div class="container mx-auto mt-10 py-10 text-center text-sm bg-[#121A26]">
-            <p>© Copyright 2012 - 2024 | Emeralda Hotel | All Rights Reserved</p>
+            <p>© Copyright 2012 - 2024 | Emeralda Resort  | All Rights Reserved</p>
         </div>
     </footer>
 </template>

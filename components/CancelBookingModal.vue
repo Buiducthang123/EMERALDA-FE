@@ -117,7 +117,14 @@ const handleOk = async() => {
         'Accept': 'application/json',
         Authorization: `Bearer ${token.value}`
       },
-      baseURL: useRuntimeConfig().public.baseURL
+      baseURL: useRuntimeConfig().public.baseURL,
+      onResponse: ({response}) => {
+          if (response.status === 200) {
+              message.success('Yêu cầu hủy đặt phòng đã được gửi đi. Vui lòng chờ xác nhận từ quản trị viên.');
+          } else {
+              message.error('Đã xảy ra lỗi khi gửi yêu cầu hủy đặt phòng. Vui lòng thử lại sau.');
+          }
+      }
     });
   
     emits('closeModal');

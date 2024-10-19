@@ -9,14 +9,14 @@
         <div class="flex gap-4">
           <div>
             <div class=" space-y-2">
-              <p class="tracking-widest leading-relaxed text-sm uppercase">CHÀO MỪNG QUÝ KHÁCH ĐẾN VỚI  Emeralda HOTEL</p>
+              <p class="tracking-widest leading-relaxed text-sm uppercase">CHÀO MỪNG QUÝ KHÁCH ĐẾN VỚI  Emeralda Resort</p>
               <h1 class="text-5xl font-playFair font-bold">Ngôi nhà của bạn tại Tam Cốc</h1>
             </div>
             <div class="w-16 bg-[#C4A356] h-[0.2px] my-8"></div>
             <p class="pb-5 text-base leading-9">
-              Được đặt tại ngay trung tâm của thành phố Tam cốc, khách sạn  Emeralda Hotel  là địa điểm lý tưởng để quý khách
+              Được đặt tại ngay trung tâm của thành phố Tam cốc, khách sạn  Emeralda Resort  là địa điểm lý tưởng để quý khách
               tận hưởng những kỳ nghỉ, trải nghiệm các nét địa phương và khám phá Cố Đô xưa của Việt Nam. Không chỉ được
-              đầu tư hệ thống phòng nghỉ tiện nghi, khách sạn  Emeralda Hotel  còn là điểm đến tuyệt vời những cho những sự kiện
+              đầu tư hệ thống phòng nghỉ tiện nghi, khách sạn  Emeralda Resort  còn là điểm đến tuyệt vời những cho những sự kiện
               lớn
             </p>
           </div>
@@ -70,7 +70,7 @@ import type { IRoomType } from '~/interfaces/RoomType';
 
 const listImg = [
     'https://thereedhotel.com/wp-content/uploads/2017/04/IMG_2095.jpg',
-    'https://thereedhotel.com/wp-content/uploads/2015/04/exterior-1.jpg',
+    'https://cf.bstatic.com/xdata/images/hotel/max1024x768/465165989.jpg?k=1b2ad16794d725ee5178a9c4eb215d76257973dc655ff9d06e3527aff169139d&o=&hp=1',
     'https://thereedhotel.com/wp-content/uploads/2015/04/interior-banquet-stair.jpg',
     'https://thereedhotel.com/wp-content/uploads/2017/04/DSC03894-HDR-scaled.jpg',
  ]
@@ -85,8 +85,8 @@ const { data: roomTypes } = useFetch<IRoomType[]>('api/room-types', {
 
 
 useSeoMeta({
-  title: 'Home -  Emeralda Hotel ',
-  description: 'Emeralda Hotel  - Tam cốc',
+  title: 'Home -  Emeralda Resort ',
+  description: 'Emeralda Resort  - Tam cốc',
 })
 
 </script>
