@@ -37,9 +37,16 @@
             <p><strong>Địa chỉ:</strong> {{ record.order.customer_info.address }}</p>
           </div>
         </template>
+
+        <template #bodyCell="{ column, text, record }">
+          <template v-if="column.dataIndex === 'rating'">
+            <a-button v-if="!record?.reviewed" :disabled="record.status!=EBookingStatus.CHECKED_OUT" @click="handleReview(record as IRoomBooking)">Đánh giá ngay</a-button>
+            <a-button v-else disabled>Cảm ơn bạn đã đánh giá</a-button>
+          </template>
+        </template>
       </a-table>
     </div>
-
+    <UsersSettingsReviewModal :open="isReviewModal" :booking="bookingSelectedReview!" @onCancel="isReviewModal=false" />
     <CancelBookingModal v-if="isCancelBooking" :bookings="selectedRows" :open="isCancelBooking" @close-modal="isCancelBooking=false" />
   </div>
 </template>
@@ -70,6 +77,8 @@ interface DataType {
   updated_at: string;
   user_id: number;
 }
+
+const isReviewModal = ref(false);
 
 const isCancelBooking = ref(false);
 
@@ -107,8 +116,8 @@ const selectedRows = ref<DataType[]>([]);
 
 const rowSelection = computed<TableProps['rowSelection']>(() => ({
   selectedRowKeys: selectedRowKeys.value,
-  onChange: (selectedKeys: number[], selectedRowsData: DataType[]) => {
-    selectedRowKeys.value = selectedKeys;
+  onChange: (selectedKeys: (string | number)[], selectedRowsData: DataType[]) => {
+    selectedRowKeys.value = selectedKeys as number[];
     selectedRows.value = selectedRowsData;
     console.log(`selectedRowKeys: ${selectedRowKeys.value}`, 'selectedRows: ', selectedRows.value);
   }
@@ -160,7 +169,6 @@ const columns: TableColumnType<DataType>[] = [
     customRender: ({ text }: { text: number }) => {
       return h(
         'a-tag',
-        { color: text === EBookingStatus.CHECKED_IN ? 'green' : 'red' },
         `${EBookingStatusText[text as keyof typeof EBookingStatusText]}`
       );
     },
@@ -177,21 +185,16 @@ const columns: TableColumnType<DataType>[] = [
     key: 'total_price',
     customRender: ({ text }: { text: number }) => formatCurrency(text),
   },
+  {
+    title: 'Đánh giá',
+    dataIndex: 'rating',
+    key: 'rating',
+  }
 ];
 
 // Pagination logic
 const currentPage = ref(1);
 const pageSize = ref(10);
-
-const pagination = computed(() => ({
-  current: currentPage.value,
-  pageSize: pageSize.value,
-  total: filteredRooms.value.length,
-  onChange: (page: number, pageSize: number) => {
-    currentPage.value = page;
-    pageSize.value = pageSize;
-  }
-}));
 
 const paginatedRooms = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value;
@@ -201,6 +204,14 @@ const paginatedRooms = computed(() => {
 
 const filterRooms = () => {
   currentPage.value = 1; // Reset to first page when filter changes
+};
+
+
+const bookingSelectedReview = ref<IRoomBooking | undefined>();
+
+const handleReview = (booking: IRoomBooking) => {
+  bookingSelectedReview.value = booking;
+  isReviewModal.value = true;
 };
 </script>
 

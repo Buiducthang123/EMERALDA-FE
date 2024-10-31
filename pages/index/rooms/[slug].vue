@@ -51,10 +51,42 @@
                 </ul>
             </section>
 
+            <section class="px-10">
+                <h2 class="font-playFair text-3xl font-bold text-center pt-8 px-10 pb-16">Đánh giá mới nhất</h2>
+
+                <div class="flex gap-8 w-full overflow-x-auto pb-5">
+                    <a-comment v-for="(comment) in roomType?.roomTypeReviews " class="w-1/3 min-w-[300px] shadow-lg p-4 rounded-lg">
+                        <template #author><a>{{ comment.user.name }}</a></template>
+                        <template #avatar>
+                            <a-avatar :src="comment.avatar" alt="avatar" />
+                        </template>
+                        <template #content>
+                            <a-rate :value="comment.rating" disabled />
+                            <p class="mt-4">
+                               <span v-if="comment.comment">
+                                {{ comment.comment }}
+                               </span>
+                               <span v-else>
+                                Không có bình luận
+                                 </span>
+                            </p>
+                        </template>
+                        <template #datetime>
+                            <a-tooltip :title="dayjs().format('YYYY-MM-DD HH:mm:ss')">
+                                <span>{{ dayjs(dayjs(comment.created_at)).fromNow() }}</span>
+                            </a-tooltip>
+                        </template>
+                    </a-comment>
+                </div>
+            </section>
+
+
             <section>
-                <h2 class="font-playFair text-3xl font-bold text-center pt-8 px-10 pb-16">Xem thêm các loại phòng khác</h2>
+                <h2 class="font-playFair text-3xl font-bold text-center pt-8 px-10 pb-16">Xem thêm các loại phòng khác
+                </h2>
                 <div class="flex gap-6 h-auto px-10">
-                    <CardRoomType class="w-1/3" v-for="(item, index) in roomTypesOrther" :key="index" :roomType="item" />
+                    <CardRoomType class="w-1/3" v-for="(item, index) in roomTypesOrther" :key="index"
+                        :roomType="item" />
                 </div>
 
             </section>
@@ -64,14 +96,16 @@
 
 <script setup lang="ts">
 import type { IRoomType } from '~/interfaces/RoomType';
-
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 
 const route = useRoute();
 
 const { data: roomType } = await useFetch<IRoomType>(`api/room-types/${route.params.slug}`, {
     method: 'get',
     params: {
-        'q[]': 'amenities'
+        'q[]': ['amenities', 'roomTypeReviews']
     },
     baseURL: useRuntimeConfig().public.baseURL
 });
@@ -90,4 +124,24 @@ const { data: roomTypes } = useFetch<IRoomType[]>('api/room-types', {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+/* width */
+::-webkit-scrollbar {
+  height: 4px; /* Adjust the height for horizontal scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+</style>

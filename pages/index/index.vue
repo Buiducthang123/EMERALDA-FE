@@ -49,16 +49,10 @@
         <h2 class="font-playFair text-4xl font-bold text-center mt-10">Tận hưởng những căn phòng tiện nghi</h2>
         <p class="tracking-[0.3em] text-center my-8 uppercase">TẠI Emeralda Hotel </p>
 
-        <div class="flex gap-6 h-auto">
-          <CardRoomType class="w-1/3" v-for="(item, index) in roomTypes" :key="index" :roomType="item" />
-        </div>
-        <ButtonCustom class="mx-auto mt-10">
-          <template #title>
-            <div class="font-medium text-xl">
-              Xem tất cả các loại phòng
-            </div>
-          </template>
-        </ButtonCustom>
+        <div class="flex justify-between gap-y-6 flex-wrap h-auto">
+                    <CardRoomType class="w-[32%]" v-for="(item, index) in roomTypes" :key="index" :roomType="item" />
+                </div>
+        
       </section>
     </main>
   <Footer />
@@ -78,7 +72,7 @@ const listImg = [
 const { data: roomTypes } = useFetch<IRoomType[]>('api/room-types', {
   method: 'get',
   query: {
-    limit: 3
+    // limit: 3
   },
   baseURL: useRuntimeConfig().public.baseURL
 })
