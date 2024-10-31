@@ -51,7 +51,7 @@
                 </ul>
             </section>
 
-            <section class="px-10">
+            <section class="px-10" v-if="roomType?.roomTypeReviews && roomType?.roomTypeReviews.length>0">
                 <h2 class="font-playFair text-3xl font-bold text-center pt-8 px-10 pb-16">Đánh giá mới nhất</h2>
 
                 <div class="flex gap-8 w-full overflow-x-auto pb-5">
