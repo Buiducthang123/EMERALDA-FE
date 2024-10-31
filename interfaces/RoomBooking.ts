@@ -10,4 +10,5 @@ export interface IRoomBooking {
     status: string | number;
     order: IOrder;
     room: IRoom;
+    reviewed?: boolean;
 }

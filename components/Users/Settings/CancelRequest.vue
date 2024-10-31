@@ -1,12 +1,15 @@
 <template>
   <a-table :columns="columns" :dataSource="data ?? []" rowKey="id" bordered :pagination="false">
     <template #bodyCell="{ column, record }">
-      <span v-if="column.dataIndex === 'bank_account_info'">
-        {{ record.bank_account_info.bankAccountNumber }} - {{ record.bank_account_info.recipientName }} - {{ record.bank_account_info.bankName }}
-      </span>
-      <span v-else-if="column.dataIndex === 'room'">
+      
+      <span v-if="column.dataIndex === 'room'">
         Phòng: {{ record.room.room_number }} - {{ record.room.description }}
       </span>
+
+      <span v-else-if="column.dataIndex === 'created_at'">
+        {{ dayjs(record.created_at).format('DD/MM/YYYY') }}
+      </span>
+
       <span v-else-if="column.dataIndex === 'status'">
         <a-tag color="green">{{ getStatusText(record.status) }}</a-tag>
       </span>
@@ -21,6 +24,7 @@
 </template>
 
 <script setup lang="ts">
+import dayjs from '#build/dayjs.imports.mjs';
 import { ref, computed } from 'vue';
 import type { ICancelRequest } from '~/interfaces/CancelRequest';
 
@@ -102,27 +106,22 @@ const columns = ref([
     key: 'refund_amount',
   },
   {
-    title: 'Thông tin tài khoản',
-    dataIndex: 'bank_account_info',
-    key: 'bank_account_info',
-  },
-  {
     title: 'Status',
     dataIndex: 'status',
     key: 'status',
   },
   {
-    title: 'Created At',
+    title: 'Ngày tạo',
     dataIndex: 'created_at',
     key: 'created_at',
   },
   {
-    title: 'Room Info',
+    title: 'Thông tin phòng',
     dataIndex: 'room',
     key: 'room',
   },
   {
-    title: 'Actions',
+    title: 'Hành động',
     dataIndex: 'actions',
     key: 'actions',
   },

@@ -22,7 +22,8 @@
               </a-menu>
             </template>
             <div class="flex items-center gap-2 cursor-pointer">
-              <a-avatar style="color: #f56a00; background-color: #fde3cf">{{ firstChar }}</a-avatar>
+              <a-avatar v-if="!user.avatar" style="color: #f56a00; background-color: #fde3cf">{{ firstChar }}</a-avatar>
+              <a-avatar v-else :src="user.avatar" />
               <span>{{ user?.name }}</span>
             </div>
           </a-dropdown>

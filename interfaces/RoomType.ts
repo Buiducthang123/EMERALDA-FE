@@ -13,7 +13,7 @@ export interface IRoomType {
     price: number;
     description?: string ;
     amenities: any[] | null;
-    features: any[] | null;
+    roomTypeReviews: any[] | null;
     total_rooms: number;
     created_at: string;
     updated_at: string;

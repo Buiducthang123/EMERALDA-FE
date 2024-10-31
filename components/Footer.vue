@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-[#a5672e] text-white pt-10">
+    <footer class="bg-secondary text-white pt-10">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-8 text-sm">
             <!-- Left Section - Ninh Binh -->
             <div>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="container mx-auto mt-10 py-10 text-center text-sm bg-[#121A26]">
-            <p>© Copyright 2012 - 2024 | Emeralda Resort  | All Rights Reserved</p>
+            <p>© Copyright 2012 - 2025 | Emeralda Resort  | All Rights Reserved</p>
         </div>
     </footer>
 </template>

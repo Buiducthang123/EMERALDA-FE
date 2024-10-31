@@ -15,16 +15,16 @@
               <ul v-if="item.showOptions" class="absolute left-full top-0 bg-white shadow-lg w-fit">
                 <li v-for="(option,index) in item.options" :key="index"
                   class="py-3 text-left text-nowrap text-sm px-5 hover:bg-gray-100 cursor-pointer"
-                  @click = "navigateTo(option.path)"
+                  @click = "()=>{ if(option.path!='/room') navigateTo(option.path) }"
                   >
-                  {{ option.label }}
+                  {{ option.label  }}
                 </li>
               </ul>
             </li>
           </ul>
         </div>
         <!-- Booking & Contact Section -->
-        <div class="mt-6">
+        <div class="mt-4">
           <ul class="flex justify-center gap-6">
             <li>
               <a href="https://www.facebook.com/" target="_blank">
@@ -38,12 +38,12 @@
               <Icon class="text-3xl" name="i-logos-youtube-icon" />
             </li>
           </ul>
-          <p class="text-gray-600 mt-6 text-sm flex items-center justify-center">
+          <p class="text-gray-600 mt-4 text-sm flex items-center justify-center">
             📞 <span class="ml-2">(+84) 9888 718 68</span>
           </p>
         </div>
 
-        <ButtonCustom class="mx-auto">
+        <ButtonCustom class="mx-auto py-2 mt-4">
           <template #title>
             ĐẶT PHÒNG NGAY
           </template>
@@ -97,7 +97,7 @@ const menuItems = ref<IMenuItem[]>([
     label: 'PHÒNG NGHỈ',
     options: roomTypeName.value,
     showOptions: false,
-    // path: '/rooms'
+    path: '/rooms'
   },
   {
     label: 'ẨM THỰC',
@@ -107,7 +107,7 @@ const menuItems = ref<IMenuItem[]>([
   },
   { label: 'HỘI NGHỊ', options: [], showOptions: false, path: '/conference' },
   { label: 'TIỆC CƯỚI', options: [], showOptions: false, path: '/wedding' },
-  { label: 'KHUYẾN MÃI', options: [], showOptions: false, path: '/promotions' },
+  { label: 'KHUYẾN MÃI', options: [], showOptions: false, path: '/voucher' },
   { label: 'BLOG', options: [], showOptions: false, path: '/blog' },
   { label: 'LIÊN HỆ', options: [], showOptions: false, path: '/contact' },
 ]);

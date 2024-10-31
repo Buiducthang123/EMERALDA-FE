@@ -4,9 +4,7 @@
       <div class="container mx-auto py-6">
         <NuxtImg src="logo.png" alt="Logo" class="h-24" />
         <div>
-          <span v-for="index in 5" :key="index">
-            <Icon :class="index <= 4 ? 'text-yellow-400' : 'text-gray-300'" name="i-material-symbols-kid-star-sharp" />
-          </span>
+          <a-rate v-model:value="rating" />
         </div>
       </div>
 
@@ -449,6 +447,9 @@ const handleViewBooking = () => {
   const url = `/booking?${params.toString()}`;
   router.push(url);
 };
+
+//rating
+const rating = ref(4);
 </script>
 
 <style>
