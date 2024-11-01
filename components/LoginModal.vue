@@ -125,12 +125,11 @@ const handleOk = async () => {
           setUser(response._data.user);
           handleCancel();
         } 
-        else if (response.status === 401) {
-          message.error('Mật khẩu không chính xác');
-        } 
-        else if (response.status === 404) {
-          message.error('Email không tồn tại');
+
+        else{
+          message.error(response._data.message||'Không thể đăng nhập');
         }
+        
       },
     });
   } catch (error) {
