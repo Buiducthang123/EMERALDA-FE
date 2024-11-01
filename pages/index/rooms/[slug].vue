@@ -51,24 +51,31 @@
                 </ul>
             </section>
 
-            <section class="px-10" v-if="roomType?.roomTypeReviews && roomType?.roomTypeReviews.length>0">
-                <h2 class="font-playFair text-3xl font-bold text-center pt-8 px-10 pb-16">Đánh giá mới nhất</h2>
+            <section class="px-10">
+                <h2 class="font-playFair text-3xl font-bold text-center pt-8 px-10 pb-16"
+                    v-if="roomType?.roomTypeReviews && roomType?.roomTypeReviews.length > 0">Đánh giá mới nhất</h2>
 
                 <div class="flex gap-8 w-full overflow-x-auto pb-5">
-                    <a-comment v-for="(comment) in roomType?.roomTypeReviews " class="w-1/3 min-w-[300px] shadow-lg p-4 rounded-lg">
+                    <a-comment v-for="(comment) in roomType?.roomTypeReviews "
+                        class="w-1/3 min-w-[300px] shadow-lg p-4 rounded-lg">
                         <template #author><a>{{ comment.user.name }}</a></template>
                         <template #avatar>
                             <a-avatar :src="comment.avatar" alt="avatar" />
                         </template>
                         <template #content>
-                            <a-rate :value="comment.rating" disabled />
+                            <div class="rating">
+                                <span v-for="star in 5" :key="star" class="star"
+                                    :class="{ filled: star <= comment.rating }">
+                                    ★
+                                </span>
+                            </div>
                             <p class="mt-4">
-                               <span v-if="comment.comment">
-                                {{ comment.comment }}
-                               </span>
-                               <span v-else>
-                                Không có bình luận
-                                 </span>
+                                <span v-if="comment.comment">
+                                    {{ comment.comment }}
+                                </span>
+                                <span v-else>
+                                    Không có bình luận
+                                </span>
                             </p>
                         </template>
                         <template #datetime>
@@ -127,21 +134,54 @@ const { data: roomTypes } = useFetch<IRoomType[]>('api/room-types', {
 <style scoped>
 /* width */
 ::-webkit-scrollbar {
-  height: 4px; /* Adjust the height for horizontal scrollbar */
+    height: 4px;
+    /* Adjust the height for horizontal scrollbar */
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+    background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+    background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+    background: #555;
+}
+
+.rating {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.star {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.star.filled {
+    color: #ffd700;
+}
+
+.rating {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.star {
+    cursor: pointer;
+    font-size: 2rem;
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.star.filled {
+    color: #ffd700;
 }
 </style>

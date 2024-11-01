@@ -9,7 +9,7 @@
                 <div class="font-baiJamjuree text-3xl font-medium text-center py-10">Mã giảm giá</div>
                 <div v-for="(voucher, index) in vouchers" :key="voucher.id" class="shadow-lg px-12 py-8 mb-20 bg-[#ecd1b133]">
                     <div>
-                        <div class="flex justify-between" :class="(index % 2) == 0 ? 'flex-row-reverse' : ''">
+                        <div class="flex gap-10 justify-between" :class="(index % 2) == 0 ? 'flex-row-reverse' : ''">
                             <div class="ckeditor font-baiJamjuree tracking-widest">
                                 <div class="mb-4 space-y-3">
                                     <p class="font-baiJamjuree text-xl font-bold ">{{ voucher.name }}</p>
@@ -22,7 +22,7 @@
                                 <p>Ngày kết thúc: {{ voucher.valid_until }}</p>
                             </div>
                             <div>
-                                <a-image :height="280" :width="280" class="object-cover"
+                                <a-image class=" xl:w-[40%] aspect-square object-cover lg:w-[30%]"
                                     :src="voucher.main_image"></a-image>
                             </div>
                         </div>
