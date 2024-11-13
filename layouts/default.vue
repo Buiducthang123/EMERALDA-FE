@@ -66,9 +66,9 @@ const route = useRoute();
 
 const { data: roomTypes } = useFetch<IRoomType[]>('api/room-types', {
   method: 'get',
-  query: {
-    limit: 3
-  },
+  // query: {
+  //   limit: 3
+  // },
   baseURL: useRuntimeConfig().public.baseURL
 });
 
