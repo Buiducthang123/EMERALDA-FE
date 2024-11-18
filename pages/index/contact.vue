@@ -22,7 +22,7 @@
                 <StraightLineCustom class="my-8" :width="'80px'" />
 
                 <p class="leading-9">
-                  Một kỳ nghỉ gia đình, một chuyến du lịch khám phá hay một chuyến công tác, Quý khách luôn cần một địa điểm nghỉ ngơi tiện nghi, thưởng thức những món ăn đặc sắc và hưởng thụ chất lượng dịch vụ tốt nhất. Hãy liên hệ với The Reed Hotel ngay hôm nay để có khoảng thời gian đáng nhớ tại Ninh Bình!    
+                  Một kỳ nghỉ gia đình, một chuyến du lịch khám phá hay một chuyến công tác, Quý khách luôn cần một địa điểm nghỉ ngơi tiện nghi, thưởng thức những món ăn đặc sắc và hưởng thụ chất lượng dịch vụ tốt nhất. Hãy liên hệ với EMERALDA resort Tam Cốc ngay hôm nay để có khoảng thời gian đáng nhớ tại Ninh Bình!    
                 </p>
                 <ButtonCustom class="mt-32">
                    <template #title>

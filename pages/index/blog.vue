@@ -94,7 +94,7 @@ const dummyBlog = [
     {
         img: 'https://promacprinting.com/wp-content/uploads/2023/04/voucher-khach-san.jpg',
         content: {
-            title: 'Đêm nhạc “Có hẹn với mùa thu” tại The Reed Hotel Ninh Bình vào 27/08!',
+            title: 'Đêm nhạc “Có hẹn với mùa thu” tại EMERALDA resort Tam Cốc vào 27/08!',
             description: 'Đêm nhạc Bolero - Nơi gặp gỡ của những tâm hồn lãng mạn, hoài niệm sẽ đưa những trái tim đồng điệu xích lại gần nhau hơn bằng những ca khúc trữ tình da diết cùng nhiều tuyệt phẩm Bolero chạm cảm xúc.',
             author: 'Emeralda Resort',
             date: '30/4/2022',
@@ -114,7 +114,7 @@ const dummyBlog = [
     {
         img: 'https://thereedhotel.com/wp-content/uploads/2022/08/The-Reed_Hen-ho-voi-mua-Thu-03-320x202.jpg',
         content: {
-            title: 'Đêm nhạc “Có hẹn với mùa thu” tại The Reed Hotel Ninh Bình vào 27/08!',
+            title: 'Đêm nhạc “Có hẹn với mùa thu” tại EMERALDA resort Tam Cốc vào 27/08!',
             description: 'Đêm nhạc Bolero - Nơi gặp gỡ của những tâm hồn lãng mạn, hoài niệm sẽ đưa những trái tim đồng điệu xích lại gần nhau hơn bằng những ca khúc trữ tình da diết cùng nhiều tuyệt phẩm Bolero chạm cảm xúc.',
             author: 'Emeralda Resort',
             date: '30/4/2022',
@@ -154,7 +154,7 @@ const dummyRecentPosts = [
         title: 'Trung thu rộn ràng, thăng hoa vị giác',
     },
     {
-        title: "Đêm nhạc “Có hẹn với mùa thu” tại The Reed Hotel Ninh Bình vào 27/08!"
+        title: "Đêm nhạc “Có hẹn với mùa thu” tại EMERALDA resort Tam Cốc vào 27/08!"
     }
 
 ]
