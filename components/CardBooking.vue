@@ -9,7 +9,7 @@
                 <div class="flex items-end gap-4">
                     <p>
                         <span>Giá: </span>
-                        <span class="text-[#D19A57] text-xl font-semibold">{{ roomType.price }}</span>
+                        <span class="text-[#D19A57] text-xl font-semibold">{{ formatCurrency(roomType.price) }} </span>
                         <span> vnđ/đêm</span>
                     </p>
                     <p>Số người tối đa: <span class="text-[#D19A57] font-semibold"> {{ roomType.max_people }} </span>
@@ -86,6 +86,11 @@ const visibleAmenities = computed(() => {
 const isRoomSelected = (room: IRoom) => {
     return props.roomsSelect?.some(selectedRoom => selectedRoom.id === room.id);
 };
+
+const formatCurrency = (value: number) => {
+  return value.toLocaleString('vi-VN');
+};
+
 </script>
 
 <style scoped>
