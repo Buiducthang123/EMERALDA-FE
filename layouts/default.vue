@@ -103,7 +103,7 @@ const menuItems = ref<IMenuItem[]>([
     label: 'ẨM THỰC',
     options: [],
     showOptions: false,
-    path: '/restaurants'
+    path: '/cuisine'
   },
   { label: 'HỘI NGHỊ', options: [], showOptions: false, path: '/conference' },
   { label: 'TIỆC CƯỚI', options: [], showOptions: false, path: '/wedding' },
