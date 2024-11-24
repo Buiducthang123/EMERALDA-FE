@@ -14,10 +14,9 @@
             </div>
             <div class="w-16 bg-[#C4A356] h-[0.2px] my-8"></div>
             <p class="pb-5 text-base leading-9">
-              Được đặt tại ngay trung tâm của thành phố Tam cốc, khách sạn  Emeralda Resort  là địa điểm lý tưởng để quý khách
-              tận hưởng những kỳ nghỉ, trải nghiệm các nét địa phương và khám phá Cố Đô xưa của Việt Nam. Không chỉ được
-              đầu tư hệ thống phòng nghỉ tiện nghi, khách sạn  Emeralda Resort  còn là điểm đến tuyệt vời những cho những sự kiện
-              lớn
+              Nằm ngay cạnh bến thuyền Tam Cốc, Emeralda Resort là địa điểm lý tưởng để quý khách tận hưởng những
+               kỳ nghỉ, trải nghiệm các nét địa phương và khám phá Cố Đô xưa của Việt Nam. 
+               Không chỉ được đầu tư hệ thống phòng nghỉ tiện nghi, Emeralda Resort còn là điểm đến tuyệt vời những cho những sự kiện lớn.
             </p>
           </div>
           <NuxtImg class="max-w-[30%] object-cover"
@@ -47,7 +46,7 @@
 
       <section>
         <h2 class="font-playFair text-4xl font-bold text-center mt-10">Tận hưởng những căn phòng tiện nghi</h2>
-        <p class="tracking-[0.3em] text-center my-8 uppercase">TẠI Emeralda Hotel </p>
+        <p class="tracking-[0.3em] text-center my-8 uppercase">TẠI Emeralda </p>
 
         <div class="flex justify-between gap-y-6 flex-wrap h-auto">
                     <CardRoomType class="w-[32%]" v-for="(item, index) in roomTypes" :key="index" :roomType="item" />
