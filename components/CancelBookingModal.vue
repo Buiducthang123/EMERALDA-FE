@@ -11,7 +11,7 @@
       <div class="space-y-4">
         <div v-for="booking in props.bookings" :key="booking.id" class="p-4 border border-gray-200 rounded-lg shadow-sm">
           <p class="text-lg font-bold">Phòng: {{ booking.room.room_number }}</p>
-          <p>Hoàn trả: <span class="text-green-500 font-bold">{{ formatCurrency(booking.paid_amount) }}</span></p>
+          <p>Hoàn trả: <span class="text-green-500 font-bold">{{ formatCurrency(Number(booking.paid_amount)) }}</span></p>
         </div>
       </div>
       <div class="p-4 border border-gray-200 rounded-lg shadow-sm text-center">
@@ -92,7 +92,7 @@ const formatCurrency = (value: number) => {
 };
 
 const totalRefundAmount = computed(() => {
-  return props.bookings.reduce((total, booking) => total + booking.paid_amount, 0);
+  return props.bookings.reduce((total, booking) => Number(total) + Number(booking.paid_amount), 0);
 });
 </script>
 
